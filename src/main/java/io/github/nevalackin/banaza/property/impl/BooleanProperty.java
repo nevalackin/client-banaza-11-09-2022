@@ -19,4 +19,9 @@ public final class BooleanProperty extends Property<Boolean> {
             this.setValue(object.getAsJsonPrimitive(this.getName()).getAsBoolean());
         }
     }
+
+    @Override
+    public void parseAndSetValue(String input) {
+        this.setValue(Boolean.parseBoolean(input));
+    }
 }

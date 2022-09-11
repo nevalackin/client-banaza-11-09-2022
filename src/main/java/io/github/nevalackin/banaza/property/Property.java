@@ -23,4 +23,6 @@ public abstract class Property<T> implements ConfigObject {
     public void setValue(T value) {
         this.value = value;
     }
+
+    public abstract void parseAndSetValue(String input);
 }

@@ -32,6 +32,11 @@ public final class DoubleProperty extends Property<Double> {
     }
 
     @Override
+    public void parseAndSetValue(String input) {
+        this.setValue(Double.parseDouble(input));
+    }
+
+    @Override
     public void write(JsonObject object) {
         object.addProperty(this.getName(), this.getValue());
     }

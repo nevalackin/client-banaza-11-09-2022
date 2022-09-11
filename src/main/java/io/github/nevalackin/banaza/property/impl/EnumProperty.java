@@ -12,6 +12,11 @@ public final class EnumProperty<E extends Enum<?>> extends Property<E> {
         this.variants = (E[]) value.getClass().getEnumConstants();
     }
 
+    @Override
+    public void parseAndSetValue(String input) {
+        throw new IllegalStateException("Not implemented!");
+    }
+
     public E[] getVariants() {
         return variants;
     }

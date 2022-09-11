@@ -8,6 +8,7 @@ import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class Module implements ConfigObject {
 
@@ -73,6 +74,10 @@ public abstract class Module implements ConfigObject {
         }
     }
 
+    public void toggle() {
+        this.setEnabled(!this.isEnabled());
+    }
+
     @Override
     public void write(JsonObject object) {
         JsonObject moduleObj = new JsonObject();
@@ -83,6 +88,16 @@ public abstract class Module implements ConfigObject {
         }
         object.add("properties", propertiesObj);
         object.add(this.getName(), moduleObj);
+    }
+
+    public Optional<Property<?>> getPropertyByName(String name) {
+        for (Property<?> property : this.getProperties()) {
+            if (property.getName().equalsIgnoreCase(name)) {
+                return Optional.of(property);
+            }
+        }
+
+        return Optional.empty();
     }
 
     @Override

@@ -2,6 +2,8 @@ package io.github.nevalackin.banaza.command;
 
 import io.github.nevalackin.banaza.command.impl.ConfigCommand;
 import io.github.nevalackin.banaza.command.impl.HelpCommand;
+import io.github.nevalackin.banaza.command.impl.ListPropertiesCommand;
+import io.github.nevalackin.banaza.command.impl.SetPropertyCommand;
 
 import java.util.*;
 
@@ -13,7 +15,9 @@ public final class CommandManager {
 
     public CommandManager() {
         this.addCommand(new HelpCommand())
-                .addCommand(new ConfigCommand());
+                .addCommand(new ConfigCommand())
+                .addCommand(new ListPropertiesCommand())
+                .addCommand(new SetPropertyCommand());
     }
 
     public boolean processChatMessage(String message) {

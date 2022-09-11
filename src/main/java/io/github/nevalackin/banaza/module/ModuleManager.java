@@ -8,6 +8,7 @@ import io.github.nevalackin.banaza.config.ConfigObject;
 import io.github.nevalackin.banaza.event.impl.KeyPressEvent;
 import io.github.nevalackin.banaza.module.impl.HudModule;
 
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Optional;
@@ -25,11 +26,21 @@ public final class ModuleManager implements ConfigObject {
         BanazaMod.getEventBus().subscribe(KeyPressEvent.class, event -> {
             for (Module module : this.getModules()) {
                 if (event.getKeyPress() == module.getKeybind()) {
-                    module.setEnabled(!module.isEnabled());
+                    module.toggle();
                     break; // no multiple binds on 1 modules
                 }
             }
         });
+    }
+
+    public Optional<Module> getModule(String name) {
+        for (Module module : this.getModules()) {
+            if (module.getName().equalsIgnoreCase(name)) {
+                return Optional.of(module);
+            }
+        }
+
+        return Optional.empty();
     }
 
     public Optional<Module> getModule(Class<? extends Module> clazz) {

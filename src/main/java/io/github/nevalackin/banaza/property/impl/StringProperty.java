@@ -10,6 +10,11 @@ public final class StringProperty extends Property<String> {
     }
 
     @Override
+    public void parseAndSetValue(String input) {
+        this.setValue(input);
+    }
+
+    @Override
     public void write(JsonObject object) {
         object.addProperty(this.getName(), this.getValue());
     }
