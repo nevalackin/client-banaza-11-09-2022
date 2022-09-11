@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "banaza",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Banaza Mod",
+  "description": "Entry for client banaza 11-09-22.",
   "authors": [
-    "Me!"
+    "nevalackin"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/nevalackin/client-banaza-11-09-2022"
   },
 
-  "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "license": "MIT",
+  "icon": "assets/banaza/icon.png",
+  "accessWidener" : "banaza.accesswidener",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "io.github.nevalackin.banaza.BanazaMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "banaza.mixins.json"
   ],
 
   "depends": {
@@ -31,8 +31,5 @@
     "fabric-api": "*",
     "minecraft": "~1.19",
     "java": ">=17"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }
