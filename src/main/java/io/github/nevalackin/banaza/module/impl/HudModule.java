@@ -17,10 +17,10 @@ import org.lwjgl.glfw.GLFW;
 
 public class HudModule extends Module {
 
-    private final BooleanProperty showWatermarkProperty = new BooleanProperty("Show watermark", true);
-    private final StringProperty watermarkTextProperty = new StringProperty("Watermark text", "Banaza client");
-    private final DoubleProperty textOpacityProperty = new DoubleProperty("Text opacity", 1.0, 0.0, 1.0, 0.1);
-    private final EnumProperty<ArraylistColorMode> arraylistColorProperty = new EnumProperty<>("Arraylist color", ArraylistColorMode.BLUE);
+    private final BooleanProperty showWatermarkProperty = new BooleanProperty("Show-watermark", true);
+    private final StringProperty watermarkTextProperty = new StringProperty("Watermark-text", "Banaza client");
+    private final DoubleProperty textOpacityProperty = new DoubleProperty("Text-opacity", 1.0, 0.0, 1.0, 0.1);
+    private final EnumProperty<ArraylistColorMode> arraylistColorProperty = new EnumProperty<>("Arraylist-color", ArraylistColorMode.BLUE);
 
     public HudModule() {
         super("Hud", "In game overlay displays enabled modules, watermark, etc.", ModuleCategory.RENDER);
