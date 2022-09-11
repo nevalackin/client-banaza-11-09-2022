@@ -17,7 +17,7 @@ public final class SetPropertyCommand extends Command {
                 .flatMap(module -> module.getPropertyByName(args[2]))
                 .ifPresent(property -> {
             property.parseAndSetValue(args[3]);
-            MinecraftClient.getInstance().getMessageHandler().onGameMessage(Text.of(String.format("\247a%s::%s set to %s", args[1], args[2], args[3])), false);
+            MinecraftClient.getInstance().getMessageHandler().onGameMessage(Text.of(String.format("\247a%s::%s set to %s", args[1], args[2], property.getValue())), false);
         });
     }
 }
