@@ -19,8 +19,8 @@ repositories {
 	maven { url 'https://jitpack.io' }
 }
 
-project.ext.lwjglVersion = "3.3.1"
-project.ext.lwjglNatives = "natives-linux"
+//project.ext.lwjglVersion = "3.3.1"
+//project.ext.lwjglNatives = "natives-linux"
 
 dependencies {
 	// To change the versions see the gradle.properties file
@@ -39,11 +39,11 @@ dependencies {
 	// Radbus event bus implementation
 	implementation 'io.github.nevalackin:radbus:1.0.0'
 
-	// NanoVG
-	implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
-
-	implementation "org.lwjgl:lwjgl-nanovg"
-	runtimeOnly "org.lwjgl:lwjgl-nanovg::$lwjglNatives"
+	 // NanoVG
+//	implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
+//
+//	implementation "org.lwjgl:lwjgl-nanovg"
+//	runtimeOnly "org.lwjgl:lwjgl-nanovg::$lwjglNatives"
 }
 
 processResources {

@@ -1,21 +1,72 @@
 package io.github.nevalackin.banaza;
 
-import net.fabricmc.api.ModInitializer;
+import io.github.nevalackin.banaza.command.CommandManager;
+import io.github.nevalackin.banaza.config.ConfigManager;
+import io.github.nevalackin.banaza.event.Event;
+import io.github.nevalackin.banaza.module.ModuleManager;
+import io.github.nevalackin.radbus.PubSub;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.metadata.ModMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BanazaMod implements ModInitializer {
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
-	public static final Logger LOGGER = LoggerFactory.getLogger("modid");
+import java.nio.file.Path;
 
-	@Override
-	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+public class BanazaMod implements ClientModInitializer {
+    public static final Logger LOGGER = LoggerFactory.getLogger("banaza");
+    private static ConfigManager configManager;
+    private static CommandManager commandManager;
+    private static ModuleManager moduleManager;
+    private static PubSub<Event> eventBus;
 
-		LOGGER.info("Hello Fabric world!");
-	}
+    public static PubSub<Event> getEventBus() {
+        if (eventBus == null) {
+            throw new IllegalStateException("ERROR BanazaMod#getEventBus(): was called before onInitializeClient().");
+        }
+
+        return eventBus;
+    }
+
+    public static ModuleManager getModuleManager() {
+        if (moduleManager == null) {
+            throw new IllegalStateException("ERROR BanazaMod#getModuleManager(): was called before onInitializeClient().");
+        }
+
+        return moduleManager;
+    }
+
+    public static ConfigManager getConfigManager() {
+        if (configManager == null) {
+            throw new IllegalStateException("ERROR BanazaMod#getConfigManager(): was called before onInitializeClient().");
+        }
+
+        return configManager;
+    }
+
+    public static CommandManager getCommandManager() {
+        if (commandManager == null) {
+            throw new IllegalStateException("ERROR BanazaMod#getCommandManager(): was called before onInitializeClient().");
+        }
+
+        return commandManager;
+    }
+
+    public static Path getDirectory() {
+        return FabricLoader.getInstance().getConfigDir();
+    }
+
+    public static ModMetadata getMetadata() {
+        return FabricLoader.getInstance().getModContainer("banaza")
+                .orElseThrow()
+                .getMetadata();
+    }
+
+    @Override
+    public void onInitializeClient() {
+        eventBus = PubSub.newInstance(LOGGER::error);
+        moduleManager = new ModuleManager();
+        commandManager = new CommandManager();
+        configManager = new ConfigManager(getDirectory().resolve("banaza-configs"), moduleManager);
+    }
 }

@@ -18,7 +18,7 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [
+    "client": [
       "io.github.nevalackin.banaza.BanazaMod"
     ]
   },
